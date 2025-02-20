@@ -28,7 +28,7 @@ struct ContentView: View {
                     Image(systemName: "magnifyingglass")
                 }
             
-            Text("Add Bussiness")
+            Text("Add Business")
                 .imageScale(.small)
                 .tabItem {
                     Image(systemName: "plus.circle")
