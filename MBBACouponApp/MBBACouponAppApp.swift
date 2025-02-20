@@ -12,6 +12,7 @@ struct MBBACouponAppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: [Business.self])
         }
     }
 }

@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
-    @State private var searchText = ""
-    
+    @StateObject var bm = BusinessManager()
+    @Query var businesses: [Business]
     var body: some View {
         ScrollView(.horizontal) {
             FavBusinessCell()
@@ -17,9 +18,9 @@ struct ContentView: View {
         Spacer()
         
         NavigationStack {
-            Text("Search \(searchText)")
+            Text("Search \(bm.searchText)")
         }
-        .searchable(text: $searchText)
+        .searchable(text: $bm.searchText)
         
         TabView {
             Text("Search")
@@ -41,6 +42,17 @@ struct ContentView: View {
                 }
         }
     }
+    var filteredBusinesses: [Business] {
+        businesses.filter { business in
+            (bm.searchText.isEmpty || business.accName.localizedCaseInsensitiveContains(bm.searchText)) &&
+            
+            (bm.selectedTokens.isEmpty || bm.selectedTokens.contains { token in
+                business.businessCategory.rawValue.localizedCaseInsensitiveContains(token.name)
+            })
+        }
+    }
+
+    
 }
 
 #Preview {
