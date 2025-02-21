@@ -16,45 +16,40 @@ struct ContentView: View {
             FavBusinessCell()
         }
         Spacer()
-        
         NavigationStack {
-            Text("Search \(bm.searchText)")
+            List {
+                ForEach(filteredBusinesses) { business in
+                    VStack(alignment: .leading) {
+                        Text(business.accName)
+                            .font(.title2)
+                        Text("Category: \(business.businessCategory.rawValue)").font(.subheadline)
+                        Text("Member Status: \(business.membershipStatus.rawValue)").font(.caption)
+                        Text(business.primaryEmail).font(.caption)
+                    }
+                }
+            }
         }
-        .searchable(text: $bm.searchText)
-        
-        TabView {
-            Text("Search")
-                .imageScale(.small)
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                }
-            
-            Text("Add Business")
-                .imageScale(.small)
-                .tabItem {
-                    Image(systemName: "plus.circle")
-                }
-            
-            Text("Profile")
-                .imageScale(.small)
-                .tabItem {
-                    Image(systemName: "person.circle")
-                }
+        .searchable(text: $bm.searchText, tokens: $bm.selectedTokens, suggestedTokens: $bm.allTokens) { token in
+            Text(token.name)
         }
     }
     var filteredBusinesses: [Business] {
-        businesses.filter { business in
+        bm.favBusinesses.filter { business in
             (bm.searchText.isEmpty || business.accName.localizedCaseInsensitiveContains(bm.searchText)) &&
             
             (bm.selectedTokens.isEmpty || bm.selectedTokens.contains { token in
                 business.businessCategory.rawValue.localizedCaseInsensitiveContains(token.name)
+            }) ||
+            
+            (bm.selectedTokens.isEmpty || bm.selectedTokens.contains { token in
+                business.membershipStatus.rawValue.localizedCaseInsensitiveContains(token.name)
             })
+            
         }
     }
-
-    
 }
 
 #Preview {
-    ContentView()
+    let preview = PreviewContainer([Business.self])
+    return ContentView().modelContainer(preview.container)
 }

@@ -8,21 +8,12 @@
 import SwiftUI
 
 struct FavBusinessCell: View {
-    @State private var favBusinesses = [
-        Business(accName: "Construction & Co.", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", address: Address(bilingStreet: "", billingCity: "", billingState: "", billingZipCode: ""), imageUrl: UIImage(), businessCategory: .construction),
-        Business(accName: "Self Care Inc.", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", address: Address(bilingStreet: "", billingCity: "", billingState: "", billingZipCode: ""), imageUrl: UIImage(), businessCategory: .selfCare),
-        Business(accName: "Education R Us", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", address: Address(bilingStreet: "", billingCity: "", billingState: "", billingZipCode: ""), imageUrl: UIImage(), businessCategory: .education),
-        Business(accName: "For the Future", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", address: Address(bilingStreet: "", billingCity: "", billingState: "", billingZipCode: ""), imageUrl: UIImage(), businessCategory: .education),
-        Business(accName: "We Know Tocos", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", address: Address(bilingStreet: "", billingCity: "", billingState: "", billingZipCode: ""), imageUrl: UIImage(), businessCategory: .restaurant),
-        Business(accName: "CarsRUs", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", address: Address(bilingStreet: "", billingCity: "", billingState: "", billingZipCode: ""), imageUrl: UIImage(), businessCategory: .automotive),
-        Business(accName: "Fine Dining", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", address: Address(bilingStreet: "", billingCity: "", billingState: "", billingZipCode: ""), imageUrl: UIImage(), businessCategory: .itTech),
-        Business(accName: "The Real Estate", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", address: Address(bilingStreet: "", billingCity: "", billingState: "", billingZipCode: ""), imageUrl: UIImage(), businessCategory: .realEstate)
-    ]
+    @ObservedObject var bm = BusinessManager()
     var body: some View {
         HStack(spacing: 45) {
-            ForEach(favBusinesses) { business in
+            ForEach(bm.favBusinesses) { business in
                 VStack {
-                    Image(uiImage: business.imageUrl)
+                    Image(systemName: "")
                         .frame(width: 100, height: 100)
                         .background(.blue)
                         .foregroundColor(.white)
@@ -36,5 +27,6 @@ struct FavBusinessCell: View {
 }
 
 #Preview {
-    FavBusinessCell()
+    let preview = PreviewContainer([Business.self])
+    return FavBusinessCell().modelContainer(preview.container)
 }

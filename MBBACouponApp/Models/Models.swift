@@ -29,6 +29,13 @@ enum BusinessCategory: String, Codable, CaseIterable, Identifiable {
 
 private var businessCategory: BusinessCategory.RawValue = BusinessCategory.automotive.rawValue
 
+enum MemberStatusType: String, Codable, CaseIterable, Identifiable {
+    case premium = "Premium"
+    case nonPremium = "Non-Premium"
+    
+    var id: Self { self }
+}
+
 
 struct User: Identifiable {
     var id = UUID()
@@ -53,29 +60,34 @@ struct Address: Identifiable {
 class Business: Identifiable /*, Codable*/ {
     var id: String { accName }
     var accName: String // business name
-    var memberStatus: String // Maybe Custom Type:
     var subscriptionStatus: Bool // (live/not live)
     var county: String // Enum of County
     var primaryIndustry: String // Industry type:
     var primaryEmail: String
-    var address: Address
-    var imageUrl: UIImage
+//    var address: Address
+//    var imageUrl: UIImage
     private var businessCategoryRaw: BusinessCategory.RawValue = BusinessCategory.automotive.rawValue
+    private var membershipStatusRaw: MemberStatusType.RawValue = MemberStatusType.premium.rawValue
     
     var businessCategory: BusinessCategory {
         get{ .init(rawValue: businessCategoryRaw) ?? .automotive}
         set{ businessCategoryRaw = newValue.rawValue }
     }
     
-    init(accName: String, memberStatus: String, subscriptionStatus: Bool, county: String, primaryIndustry: String, primaryEmail: String, address: Address, imageUrl: UIImage, businessCategory: BusinessCategory) {
+    var membershipStatus: MemberStatusType {
+        get { .init(rawValue: membershipStatusRaw) ?? .premium }
+        set { membershipStatusRaw = newValue.rawValue }
+    }
+    
+    init(accName: String, memberStatus: MemberStatusType, subscriptionStatus: Bool, county: String, primaryIndustry: String, primaryEmail: String, /*address: Address, imageUrl: UIImage,*/ businessCategory: BusinessCategory) {
         self.accName = accName
-        self.memberStatus = memberStatus
+        self.membershipStatusRaw = memberStatus.rawValue
         self.subscriptionStatus = subscriptionStatus
         self.county = county
         self.primaryIndustry = primaryIndustry
         self.primaryEmail = primaryEmail
-        self.address = address
-        self.imageUrl = imageUrl
+//        self.address = address
+//        self.imageUrl = imageUrl
         self.businessCategoryRaw = businessCategory.rawValue
     }
 }
@@ -100,9 +112,15 @@ struct Token: Identifiable {
     var id: String { name }
     var name: String
     var businessCategory: BusinessCategoryToken?
+    var membershipStatus: MemberStatusToken?
 }
 
 struct BusinessCategoryToken: Identifiable {
+    var id: String { name }
+    var name: String
+}
+
+struct MemberStatusToken: Identifiable {
     var id: String { name }
     var name: String
 }
