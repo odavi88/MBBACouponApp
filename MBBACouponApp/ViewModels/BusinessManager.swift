@@ -23,21 +23,25 @@ class BusinessManager: ObservableObject {
         Business(accName: "We Build It Inc.", memberStatus: .nonPremium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "buildit@business.com", /*address: Address(bilingStreet: "", billingCity: "", billingState: "", billingZipCode: ""), imageUrl: UIImage(),*/ businessCategory: .construction),
     ]
     @Published var selectedTokens = [Token]()
-    @Published var allTokens = [
-        Token(name: "Premium", membershipStatus: MemberStatusToken(name: "Premium")),
-        Token(name: "Non-Premium", membershipStatus: MemberStatusToken(name: "Non-Premium")),
+    @Published var suggestedTokens = [
+        Token(name: "Premium", membershipStatusToken: MemberStatusToken(name: "Premium")),
+        Token(name: "Non-Premium", membershipStatusToken: MemberStatusToken(name: "Non-Premium")),
         
-        Token(name: "Automotive", businessCategory: BusinessCategoryToken(name: "Automotive")),
-        Token(name: "Construction", businessCategory: BusinessCategoryToken(name: "Construction")),
-        Token(name: "Education", businessCategory: BusinessCategoryToken(name: "Education")),
-        Token(name: "Financial/Insurance", businessCategory: BusinessCategoryToken(name: "Financial/Insurance")),
-        Token(name: "Health Care", businessCategory: BusinessCategoryToken(name: "Health Care")),
-        Token(name: "Hospitality", businessCategory: BusinessCategoryToken(name: "Hospitality")),
-        Token(name: "IT/Technology", businessCategory: BusinessCategoryToken(name: "IT/Technology")),
-        Token(name: "Legal", businessCategory: BusinessCategoryToken(name: "Legal")),
-        Token(name: "Real Estate", businessCategory: BusinessCategoryToken(name: "Real Estate")),
-        Token(name: "Restaurant", businessCategory: BusinessCategoryToken(name: "Restaurant")),
-        Token(name: "Retail", businessCategory: BusinessCategoryToken(name: "Retail")),
-        Token(name: "Self-care", businessCategory: BusinessCategoryToken(name: "Self-care"))
+        Token(name: "Automotive", businessCategoryToken: BusinessCategoryToken(name: "Automotive")),
+        Token(name: "Construction", businessCategoryToken: BusinessCategoryToken(name: "Construction")),
     ]
+    
+    var filteredBusinesses: [Business] {
+        favBusinesses.filter { business in
+            (searchText.isEmpty || business.accName.localizedCaseInsensitiveContains(searchText)) &&
+            
+            (selectedTokens.isEmpty || selectedTokens.contains { token in
+                business.businessCategory.rawValue.localizedCaseInsensitiveContains(token.name)
+            }) ||
+            
+            (selectedTokens.isEmpty || selectedTokens.contains { token in
+                business.membershipStatus.rawValue.localizedCaseInsensitiveContains(token.name)
+            })
+        }
+    }
 }

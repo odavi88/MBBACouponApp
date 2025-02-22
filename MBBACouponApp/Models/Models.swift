@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-enum BusinessCategory: String, Codable, CaseIterable, Identifiable {
+enum BusinessSearchToken: String, Codable, CaseIterable, Identifiable {
     case automotive = "Automotive"
     case construction = "Construction"
     case education = "Education"
@@ -23,11 +23,40 @@ enum BusinessCategory: String, Codable, CaseIterable, Identifiable {
     case retail = "Retail"
     case selfCare = "Self-care"
     
+    var icon: String {
+        switch self {
+            case .automotive:
+                return "car.fill"
+            case .construction:
+                return "hammer.fill"
+            case .education:
+                return "graduationcap.fill"
+            case .financialInsurance:
+                return "dollarsign.circle.fill"
+            case .healthCare:
+                return "cross.circle.fill"
+            case .hospitality:
+                return "house.lodge.circle"
+            case .itTech:
+                return "wrench.and.screwdriver.fill"
+            case .legal:
+                return "books.vertical.fill"
+            case .realEstate:
+                return "house.fill"
+            case .restaurant:
+                return "fork.knife.circle.fill"
+            case .retail:
+                return "cart.fill"
+            case .selfCare:
+                return "figure.run.circle.fill"
+        }
+    }
+    
     var id: Self { self }
     
 }
 
-private var businessCategory: BusinessCategory.RawValue = BusinessCategory.automotive.rawValue
+private var businessCategory: BusinessSearchToken.RawValue = BusinessSearchToken.automotive.rawValue
 
 enum MemberStatusType: String, Codable, CaseIterable, Identifiable {
     case premium = "Premium"
@@ -66,10 +95,10 @@ class Business: Identifiable /*, Codable*/ {
     var primaryEmail: String
 //    var address: Address
 //    var imageUrl: UIImage
-    private var businessCategoryRaw: BusinessCategory.RawValue = BusinessCategory.automotive.rawValue
+    private var businessCategoryRaw: BusinessSearchToken.RawValue = BusinessSearchToken.automotive.rawValue
     private var membershipStatusRaw: MemberStatusType.RawValue = MemberStatusType.premium.rawValue
     
-    var businessCategory: BusinessCategory {
+    var businessCategory: BusinessSearchToken {
         get{ .init(rawValue: businessCategoryRaw) ?? .automotive}
         set{ businessCategoryRaw = newValue.rawValue }
     }
@@ -79,7 +108,7 @@ class Business: Identifiable /*, Codable*/ {
         set { membershipStatusRaw = newValue.rawValue }
     }
     
-    init(accName: String, memberStatus: MemberStatusType, subscriptionStatus: Bool, county: String, primaryIndustry: String, primaryEmail: String, /*address: Address, imageUrl: UIImage,*/ businessCategory: BusinessCategory) {
+    init(accName: String, memberStatus: MemberStatusType, subscriptionStatus: Bool, county: String, primaryIndustry: String, primaryEmail: String, /*address: Address, imageUrl: UIImage,*/ businessCategory: BusinessSearchToken) {
         self.accName = accName
         self.membershipStatusRaw = memberStatus.rawValue
         self.subscriptionStatus = subscriptionStatus
@@ -111,8 +140,8 @@ struct Coupon: Identifiable /*, Codable*/ {
 struct Token: Identifiable {
     var id: String { name }
     var name: String
-    var businessCategory: BusinessCategoryToken?
-    var membershipStatus: MemberStatusToken?
+    var businessCategoryToken: BusinessCategoryToken?
+    var membershipStatusToken: MemberStatusToken?
 }
 
 struct BusinessCategoryToken: Identifiable {

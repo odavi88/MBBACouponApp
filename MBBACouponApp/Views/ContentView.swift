@@ -18,7 +18,7 @@ struct ContentView: View {
         Spacer()
         NavigationStack {
             List {
-                ForEach(filteredBusinesses) { business in
+                ForEach(bm.filteredBusinesses) { business in
                     VStack(alignment: .leading) {
                         Text(business.accName)
                             .font(.title2)
@@ -29,22 +29,16 @@ struct ContentView: View {
                 }
             }
         }
-        .searchable(text: $bm.searchText, tokens: $bm.selectedTokens, suggestedTokens: $bm.allTokens) { token in
-            Text(token.name)
-        }
-    }
-    var filteredBusinesses: [Business] {
-        bm.favBusinesses.filter { business in
-            (bm.searchText.isEmpty || business.accName.localizedCaseInsensitiveContains(bm.searchText)) &&
-            
-            (bm.selectedTokens.isEmpty || bm.selectedTokens.contains { token in
-                business.businessCategory.rawValue.localizedCaseInsensitiveContains(token.name)
-            }) ||
-            
-            (bm.selectedTokens.isEmpty || bm.selectedTokens.contains { token in
-                business.membershipStatus.rawValue.localizedCaseInsensitiveContains(token.name)
-            })
-            
+        .searchable(text: $bm.searchText, tokens: $bm.selectedTokens, suggestedTokens: $bm.suggestedTokens) { token in
+            Label {
+                Text("\(token.name)")
+                    .foregroundStyle(.white)
+                    .padding(10)
+                    .background(Color.green)
+                    .clipShape(Capsule())
+            } icon: {
+                
+            }
         }
     }
 }
