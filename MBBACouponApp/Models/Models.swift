@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct User: Identifiable {
     var id = UUID()
@@ -35,6 +36,7 @@ struct Business: Identifiable /*, Codable*/ {
     var primaryIndustry: String // Industry type:
     var primaryEmail: String
     var address: Address
+    var imageUrl: UIImage
 }
 
 // Person that has the Coupon (for PassKit API)

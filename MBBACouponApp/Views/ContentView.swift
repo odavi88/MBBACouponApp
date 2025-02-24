@@ -12,23 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         ScrollView(.horizontal) {
-            
-            HStack(spacing: 45) {
-                ForEach(1..<21) { index in
-                    Text("Business \(index)")
-                }
-                .frame(width: 100, height: 100)
-                .background(.blue)
-                .foregroundColor(.white)
-                .clipShape(.circle)
-            }
-            
-            HStack(spacing: 57) {
-                ForEach(1..<21) { index in
-                    Text("Business \(index)")
-                }
-            }
-            .padding()
+            FavBusinessCell()
         }
         Spacer()
         
@@ -36,6 +20,26 @@ struct ContentView: View {
             BusinessView()
         }
         .searchable(text: $searchText)
+        
+        TabView {
+            Text("Search")
+                .imageScale(.small)
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                }
+            
+            Text("Add Business")
+                .imageScale(.small)
+                .tabItem {
+                    Image(systemName: "plus.circle")
+                }
+            
+            Text("Profile")
+                .imageScale(.small)
+                .tabItem {
+                    Image(systemName: "person.circle")
+                }
+        }
     }
 }
 
