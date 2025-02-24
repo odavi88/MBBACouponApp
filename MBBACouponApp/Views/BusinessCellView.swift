@@ -1,5 +1,5 @@
 //
-//  BusinessDetailView.swift
+//  BusinessCellView.swift
 //  MBBACouponApp
 //
 //  Created by Aaron Preston on 1/30/25.
@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BusinessCellView: View {
     @State private var businessSheet: Bool = false
+    @State private var business = [Business]()
     
     var body: some View {
         VStack {

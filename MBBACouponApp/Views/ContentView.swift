@@ -33,29 +33,9 @@ struct ContentView: View {
         Spacer()
         
         NavigationStack {
-            Text("Search \(searchText)")
+            BusinessView()
         }
         .searchable(text: $searchText)
-        
-        TabView {
-            Text("Search")
-                .imageScale(.small)
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                }
-            
-            Text("Add Bussiness")
-                .imageScale(.small)
-                .tabItem {
-                    Image(systemName: "plus.circle")
-                }
-            
-            Text("Profile")
-                .imageScale(.small)
-                .tabItem {
-                    Image(systemName: "person.circle")
-                }
-        }
     }
 }
 
