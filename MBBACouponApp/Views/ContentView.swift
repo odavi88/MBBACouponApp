@@ -20,8 +20,17 @@ struct ContentView: View {
             List {
                 ForEach(bm.filteredBusinesses) { business in
                     VStack(alignment: .leading) {
-                        Text(business.accName)
-                            .font(.title2)
+                        HStack {
+                            Text(business.accName)
+                                .font(.title2)
+                            Spacer()
+                            Button {
+                                bm.favoriteBusiness()
+                            } label: {
+                                Image(systemName: "heart")
+                                    .font(.headline)
+                            }
+                        }
                         Text("Category: \(business.businessCategory.rawValue)").font(.subheadline)
                         Text("Member Status: \(business.membershipStatus.rawValue)").font(.caption)
                         Text(business.primaryEmail).font(.caption)
@@ -30,15 +39,15 @@ struct ContentView: View {
             }
         }
         .searchable(text: $bm.searchText, tokens: $bm.selectedTokens, suggestedTokens: $bm.suggestedTokens) { token in
-            Label {
-                Text("\(token.name)")
+                Label {
+                    Text("\(Image(systemName: "\(token.businessCategoryToken?.businessSearchToken.icon ?? "❓")"))  \(token.name)")
                     .foregroundStyle(.white)
                     .padding(10)
-                    .background(Color.green)
+                    .background(token.businessCategoryToken?.businessSearchToken.tagColor)
                     .clipShape(Capsule())
-            } icon: {
-                
-            }
+                } icon: {
+                            
+                }
         }
     }
 }

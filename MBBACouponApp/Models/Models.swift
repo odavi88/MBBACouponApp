@@ -21,7 +21,7 @@ enum BusinessSearchToken: String, Codable, CaseIterable, Identifiable {
     case realEstate = "Real Estate"
     case restaurant = "Restaurant"
     case retail = "Retail"
-    case selfCare = "Self-care"
+    case selfCare = "Self Care"
     
     var icon: String {
         switch self {
@@ -50,6 +50,18 @@ enum BusinessSearchToken: String, Codable, CaseIterable, Identifiable {
             case .selfCare:
                 return "figure.run.circle.fill"
         }
+    }
+    
+    var tagColor: Color {
+        switch self {
+        case .automotive, .construction, .legal, .itTech:
+            return .black
+        case .education, .hospitality, .restaurant, .retail, .selfCare:
+            return .blue
+        case .financialInsurance, .healthCare, .realEstate:
+            return .green
+        }
+    
     }
     
     var id: Self { self }
@@ -99,8 +111,8 @@ class Business: Identifiable /*, Codable*/ {
     private var membershipStatusRaw: MemberStatusType.RawValue = MemberStatusType.premium.rawValue
     
     var businessCategory: BusinessSearchToken {
-        get{ .init(rawValue: businessCategoryRaw) ?? .automotive}
-        set{ businessCategoryRaw = newValue.rawValue }
+        get { .init(rawValue: businessCategoryRaw) ?? .automotive}
+        set { businessCategoryRaw = newValue.rawValue }
     }
     
     var membershipStatus: MemberStatusType {
@@ -147,6 +159,7 @@ struct Token: Identifiable {
 struct BusinessCategoryToken: Identifiable {
     var id: String { name }
     var name: String
+    var businessSearchToken: BusinessSearchToken
 }
 
 struct MemberStatusToken: Identifiable {
