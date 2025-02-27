@@ -11,7 +11,8 @@ import SwiftUI
 struct MBBACouponAppApp: App {
     var body: some Scene {
         WindowGroup {
-            BusinessProfileView()
+            ContentView()
+                .modelContainer(for: [Business.self])
         }
     }
 }
