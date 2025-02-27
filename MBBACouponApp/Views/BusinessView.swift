@@ -8,22 +8,24 @@
 import SwiftUI
 
 struct BusinessView: View {
+    @State private var business = [Business]()
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                ForEach(1..<4, id: \.self) { _ in
-                    Image("garden-bowl")
+                ForEach(business) { businesses in
+                    Image(uiImage: businesses.imageUrl)
                         .resizable()
                         .frame(width: 365, height: 180)
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                     
-                    Text("Garden Bowl")
+                    Text(businesses.accName)
                         .font(.title2)
                         .fontWeight(.bold)
                     
                     Text("Detroit, MI")
-                    Text("Recreation")
+                    Text(businesses.primaryIndustry)
                     
                     HStack {
                         Text("5.0")
