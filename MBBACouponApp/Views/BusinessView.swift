@@ -33,9 +33,9 @@ struct BusinessView: View {
                     }
                 }
                 .onTapGesture {
-                    businessSheet.toggle()
+                    bm.businessSheet.toggle()
                 }
-                .sheet(isPresented: $businessSheet) {
+                .sheet(isPresented: $bm.businessSheet) {
                     CouponCellView()
                 }
             }

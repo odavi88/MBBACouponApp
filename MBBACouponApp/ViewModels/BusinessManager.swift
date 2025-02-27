@@ -11,6 +11,7 @@ import SwiftUI
 
 class BusinessManager: ObservableObject {
     @Published var searchText = ""
+    @Published var businessSheet = false
     @Published var mainFeedBusinesses: [Business] = [
         Business(accName: "Auto Masters", memberStatus: .premium, subscriptionStatus: true, county: "Wayne", primaryIndustry: "Automotive", primaryEmail: "contact@automasters.com", billingStreet: "123 Main St", billingCity: "Detroit", billingState: "MI", billingZipCode: "48201", billingCountry: "USA", imageUrl: "automotive", businessCategory: .automotive),
         
