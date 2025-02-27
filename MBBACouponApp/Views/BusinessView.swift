@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct BusinessView: View {
-    @State private var business = [Business]()
+    @State private var business: [Business] = [
+        Business(accName: "", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", imageUrl:  "garden-bowl", bilingStreet: "", billingCity: "", billingState: "", billingZipCode: "")
+    ]
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 ForEach(business) { businesses in
-                    Image(uiImage: businesses.imageUrl)
+                    Image(businesses.imageUrl)
                         .resizable()
                         .frame(width: 365, height: 180)
                         .aspectRatio(contentMode: .fit)

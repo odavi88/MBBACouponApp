@@ -28,15 +28,19 @@ struct Address: Identifiable {
 }
 
 struct Business: Identifiable /*, Codable*/ {
-    var id = UUID()
+    var id: String { accName }
     var accName: String // business name
     var memberStatus: String // Maybe Custom Type:
     var subscriptionStatus: Bool // (live/not live)
     var county: String // Enum of County
     var primaryIndustry: String // Industry type:
     var primaryEmail: String
-    var address: Address
-    var imageUrl: UIImage
+    var imageUrl: String
+    var bilingStreet: String
+    var billingCity: String
+    var billingState: String // enum
+    var billingZipCode: String
+    var bilingCountry: String?
 }
 
 // Person that has the Coupon (for PassKit API)

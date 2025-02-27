@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BusinessCellView: View {
+struct CouponCellView: View {
     @State private var businessSheet: Bool = false
     @State private var business = [Business]()
     
@@ -73,5 +73,5 @@ struct BusinessCellView: View {
 }
 
 #Preview {
-    BusinessCellView()
+    CouponCellView()
 }
