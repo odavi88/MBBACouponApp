@@ -8,23 +8,8 @@
 import SwiftUI
 
 struct CouponCellView: View {
-    @State private var businessSheet: Bool = false
     @State private var business = [Business]()
     
-    var body: some View {
-        VStack {
-            Button("Show Business") {
-                businessSheet.toggle()
-            }
-        }
-        .sheet(isPresented: $businessSheet, content: {
-            SheetView()
-        })
-    }
-    
-    struct SheetView: View {
-        @Environment(\.dismiss) var dismiss
-        
         var body: some View {
             Image("coffee-bar")
                 .resizable()
@@ -69,7 +54,6 @@ struct CouponCellView: View {
             }
             Spacer()
         }
-    }
 }
 
 #Preview {

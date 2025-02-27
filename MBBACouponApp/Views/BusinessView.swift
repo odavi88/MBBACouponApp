@@ -12,6 +12,8 @@ struct BusinessView: View {
         Business(accName: "", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", imageUrl:  "garden-bowl", bilingStreet: "", billingCity: "", billingState: "", billingZipCode: "")
     ]
     
+    @State private var businessSheet = false
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -34,6 +36,12 @@ struct BusinessView: View {
                         Image(systemName: "star.fill")
                         Text("(25+)")
                     }
+                }
+                .onTapGesture {
+                    businessSheet.toggle()
+                }
+                .sheet(isPresented: $businessSheet) {
+                    CouponCellView()
                 }
             }
             .padding()
