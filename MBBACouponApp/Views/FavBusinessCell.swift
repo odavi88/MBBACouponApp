@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct FavBusinessCell: View {
-    @State private var favBusinesses: [Business] = [
-        Business(accName: "", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", imageUrl:  "garden-bowl", bilingStreet: "", billingCity: "", billingState: "", billingZipCode: "")
-    ]
+    @ObservedObject var bm = BusinessManager()
     var body: some View {
         HStack(spacing: 45) {
-            ForEach(favBusinesses) { business in
+            ForEach(bm.favBusinesses) { business in
                 VStack {
-                    Image(systemName:"")
+                    Image(systemName: "")
                         .frame(width: 100, height: 100)
                         .background(.blue)
                         .foregroundColor(.white)
@@ -29,5 +27,6 @@ struct FavBusinessCell: View {
 }
 
 #Preview {
-    FavBusinessCell()
+    let preview = PreviewContainer([Business.self])
+    return FavBusinessCell().modelContainer(preview.container)
 }
