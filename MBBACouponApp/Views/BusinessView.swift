@@ -8,26 +8,23 @@
 import SwiftUI
 
 struct BusinessView: View {
-    @State private var business: [Business] = [
-        Business(accName: "", memberStatus: "", subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "", imageUrl:  "garden-bowl", bilingStreet: "", billingCity: "", billingState: "", billingZipCode: "")
-    ]
-    
+    @ObservedObject var bm = BusinessManager()
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                ForEach(business) { businesses in
-                    Image(businesses.imageUrl)
+                ForEach(bm.filteredBusinesses) { business in
+                    Image(business.imageUrl)
                         .resizable()
                         .frame(width: 365, height: 180)
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                     
-                    Text(businesses.accName)
+                    Text(business.accName)
                         .font(.title2)
                         .fontWeight(.bold)
                     
-                    Text("Detroit, MI")
-                    Text(businesses.primaryIndustry)
+                    Text(business.billingCity)
+                    Text(business.primaryIndustry)
                     
                     HStack {
                         Text("5.0")

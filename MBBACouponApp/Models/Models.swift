@@ -17,10 +17,12 @@ enum BusinessSearchToken: String, Codable, CaseIterable, Identifiable {
     case healthCare = "Health Care"
     case hospitality = "Hospitality"
     case itTech = "IT/Technology"
+    case landscaping = "Landscaping"
     case legal = "Legal"
     case realEstate = "Real Estate"
     case restaurant = "Restaurant"
     case retail = "Retail"
+    case veterinary = "Veterinary"
     case selfCare = "Self Care"
     
     var icon: String {
@@ -39,6 +41,8 @@ enum BusinessSearchToken: String, Codable, CaseIterable, Identifiable {
                 return "house.lodge.circle"
             case .itTech:
                 return "wrench.and.screwdriver.fill"
+            case .landscaping:
+                return "tree.fill"
             case .legal:
                 return "books.vertical.fill"
             case .realEstate:
@@ -47,6 +51,8 @@ enum BusinessSearchToken: String, Codable, CaseIterable, Identifiable {
                 return "fork.knife.circle.fill"
             case .retail:
                 return "cart.fill"
+        case .veterinary:
+            return "pawprint.fill"
             case .selfCare:
                 return "figure.run.circle.fill"
         }
@@ -54,12 +60,8 @@ enum BusinessSearchToken: String, Codable, CaseIterable, Identifiable {
     
     var tagColor: Color {
         switch self {
-        case .automotive, .construction, .legal, .itTech:
+        case .automotive, .construction, .legal, .itTech, .landscaping, .education, .hospitality, .restaurant, .retail, .selfCare, .financialInsurance, .healthCare, .realEstate, .veterinary:
             return .black
-        case .education, .hospitality, .restaurant, .retail, .selfCare:
-            return .blue
-        case .financialInsurance, .healthCare, .realEstate:
-            return .green
         }
     
     }
@@ -105,8 +107,12 @@ class Business: Identifiable /*, Codable*/ {
     var county: String // Enum of County
     var primaryIndustry: String // Industry type:
     var primaryEmail: String
-//    var address: Address
-//    var imageUrl: UIImage
+    var billingStreet: String
+    var billingCity: String
+    var billingState: String // enum
+    var billingZipCode: String
+    var billingCountry: String?
+    var imageUrl: String
     private var businessCategoryRaw: BusinessSearchToken.RawValue = BusinessSearchToken.automotive.rawValue
     private var membershipStatusRaw: MemberStatusType.RawValue = MemberStatusType.premium.rawValue
     
@@ -120,15 +126,19 @@ class Business: Identifiable /*, Codable*/ {
         set { membershipStatusRaw = newValue.rawValue }
     }
     
-    init(accName: String, memberStatus: MemberStatusType, subscriptionStatus: Bool, county: String, primaryIndustry: String, primaryEmail: String, /*address: Address, imageUrl: UIImage,*/ businessCategory: BusinessSearchToken) {
+    init(accName: String, memberStatus: MemberStatusType, subscriptionStatus: Bool, county: String, primaryIndustry: String, primaryEmail: String, billingStreet: String, billingCity: String, billingState: String, billingZipCode: String, billingCountry: String, imageUrl: String, businessCategory: BusinessSearchToken) {
         self.accName = accName
         self.membershipStatusRaw = memberStatus.rawValue
         self.subscriptionStatus = subscriptionStatus
         self.county = county
         self.primaryIndustry = primaryIndustry
         self.primaryEmail = primaryEmail
-//        self.address = address
-//        self.imageUrl = imageUrl
+        self.billingStreet = billingStreet
+        self.billingCity = billingCity
+        self.billingState = billingState
+        self.billingZipCode = billingZipCode
+        self.billingCountry = billingCountry
+        self.imageUrl = imageUrl
         self.businessCategoryRaw = businessCategory.rawValue
     }
 }
