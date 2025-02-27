@@ -32,6 +32,12 @@ struct BusinessView: View {
                         Text("(25+)")
                     }
                 }
+                .onTapGesture {
+                    businessSheet.toggle()
+                }
+                .sheet(isPresented: $businessSheet) {
+                    CouponCellView()
+                }
             }
             .padding()
         }
