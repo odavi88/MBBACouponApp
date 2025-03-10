@@ -25,11 +25,12 @@ struct ContentView: View {
                                 .font(.title2)
                             Spacer()
                             Button {
-                                bm.favoriteBusiness()
+                                bm.favoriteBusiness(selectedBusiness: business)
                             } label: {
-                                Image(systemName: "heart")
-                                    .font(.headline)
-                            }
+                                Image(systemName: business.isFavorite ? "heart.fill" : "heart")
+                                    .foregroundStyle(business.isFavorite ? .red : .gray)
+                                    .font(.title3)
+                            }.buttonStyle(.borderless)
                         }
                         Text("Category: \(business.businessCategory.rawValue)").font(.subheadline)
                         Text("Member Status: \(business.membershipStatus.rawValue)").font(.caption)

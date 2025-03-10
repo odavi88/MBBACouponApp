@@ -11,7 +11,7 @@ struct FavBusinessCell: View {
     @ObservedObject var bm = BusinessManager()
     var body: some View {
         HStack(spacing: 45) {
-            ForEach(bm.favBusinesses) { business in
+            ForEach(bm.favoriteBusinesses) { business in
                 VStack {
                     Image(systemName: "")
                         .frame(width: 100, height: 100)

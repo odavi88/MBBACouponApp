@@ -12,7 +12,7 @@ import SwiftUI
 class BusinessManager: ObservableObject {
     @Published var searchText = ""
     @Published var mainFeedBusinesses: [Business] = [
-        Business(accName: "PC Builders Enterprises", memberStatus: .nonPremium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "pcbuilders@business.com", isFavorite: false, businessCategory: .itTech),
+        Business(accName: "PC Builders Enterprises", memberStatus: .nonPremium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "pcbuilders@business.com", isFavorite: true, businessCategory: .itTech),
            Business(accName: "Swift Industries", memberStatus: .premium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "swift@industries.com", isFavorite: false, businessCategory: .itTech),
            Business(accName: "AutoMasters", memberStatus: .nonPremium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "automasters@business.com", isFavorite: false, businessCategory: .automotive),
            Business(accName: "ConstructCo", memberStatus: .premium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "constructco@business.com", isFavorite: false, businessCategory: .construction),
@@ -66,12 +66,9 @@ class BusinessManager: ObservableObject {
             Business(accName: "Neon Pixel Software", memberStatus: .nonPremium, subscriptionStatus: false, county: "", primaryIndustry: "", primaryEmail: "hello@neonpixel.com", isFavorite: false, businessCategory: .itTech),
             Business(accName: "Verdict Law Firm", memberStatus: .premium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "legal@verdictlaw.com", isFavorite: false, businessCategory: .legal)
     ]
-    @Published var favoriteBusinesses: [Business] = []
+    @Published var favoriteBusinesses: [Business] = [Business(accName: "PC Builders Enterprises", memberStatus: .nonPremium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "pcbuilders@business.com", isFavorite: true, businessCategory: .itTech)]
     @Published var selectedTokens = [Token]()
     @Published var suggestedTokens = [
-//        Token(name: "Premium", membershipStatusToken: MemberStatusToken(name: "Premium")),
-//        Token(name: "Non-Premium", membershipStatusToken: MemberStatusToken(name: "Non-Premium")),
-        
         Token(name: "Automotive", businessCategoryToken: BusinessCategoryToken(name: "Automotive", businessSearchToken: .automotive)),
         Token(name: "Construction", businessCategoryToken: BusinessCategoryToken(name: "Construction", businessSearchToken: .construction)),
         Token(name: "Education", businessCategoryToken: BusinessCategoryToken(name: "Education", businessSearchToken: .education)),
@@ -98,18 +95,12 @@ class BusinessManager: ObservableObject {
     
     //   MARK: Function that appends a favorited business into the favBusinesses array:
         func favoriteBusiness(selectedBusiness: Business) {
-            if let index = filteredBusinesses.firstIndex(where: { $0.accName == selectedBusiness.accName }) {
+            if let index = filteredBusinesses.firstIndex(where: { $0.id == selectedBusiness.id }) {
                 filteredBusinesses[index].isFavorite.toggle()
-                favoriteBusinesses.append(selectedBusiness)
+                        
+//                filteredBusinesses.append(filteredBusinesses[index])
                 
-                if filteredBusinesses[index].isFavorite {
-                    if !favoriteBusinesses.contains(filteredBusinesses[index]) {
-                            favoriteBusinesses.append(filteredBusinesses[index])
-                        }
-                    } else {
-                        favoriteBusinesses.removeAll { $0.accName == selectedBusiness.accName }
-                    }
              }
-            print(favoriteBusinesses)
+            print("Favorite Business array: \(favoriteBusinesses)")
         }
 }
