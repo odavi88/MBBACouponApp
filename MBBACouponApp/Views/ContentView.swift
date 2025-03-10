@@ -17,7 +17,26 @@ struct ContentView: View {
         }
         Spacer()
         NavigationStack {
-            BusinessView(bm: bm)
+            List {
+                ForEach(bm.filteredBusinesses) { business in
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(business.accName)
+                                .font(.title2)
+                            Spacer()
+                            Button {
+                                bm.favoriteBusiness()
+                            } label: {
+                                Image(systemName: "heart")
+                                    .font(.headline)
+                            }
+                        }
+                        Text("Category: \(business.businessCategory.rawValue)").font(.subheadline)
+                        Text("Member Status: \(business.membershipStatus.rawValue)").font(.caption)
+                        Text(business.primaryEmail).font(.caption)
+                    }
+                }
+            }
         }
         .searchable(text: $bm.searchText, tokens: $bm.selectedTokens, suggestedTokens: $bm.suggestedTokens) { token in
                 Label {
