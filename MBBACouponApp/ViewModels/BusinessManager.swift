@@ -66,7 +66,7 @@ class BusinessManager: ObservableObject {
             Business(accName: "Neon Pixel Software", memberStatus: .nonPremium, subscriptionStatus: false, county: "", primaryIndustry: "", primaryEmail: "hello@neonpixel.com", isFavorite: false, businessCategory: .itTech),
             Business(accName: "Verdict Law Firm", memberStatus: .premium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "legal@verdictlaw.com", isFavorite: false, businessCategory: .legal)
     ]
-    @Published var favoriteBusinesses: [Business] = [Business(accName: "PC Builders Enterprises", memberStatus: .nonPremium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "pcbuilders@business.com", isFavorite: true, businessCategory: .itTech)]
+    @Published var favoriteBusinesses: [Business] = []
     @Published var selectedTokens = [Token]()
     @Published var suggestedTokens = [
         Token(name: "Automotive", businessCategoryToken: BusinessCategoryToken(name: "Automotive", businessSearchToken: .automotive)),
@@ -94,13 +94,14 @@ class BusinessManager: ObservableObject {
     }
     
     //   MARK: Function that appends a favorited business into the favBusinesses array:
-        func favoriteBusiness(selectedBusiness: Business) {
-            if let index = filteredBusinesses.firstIndex(where: { $0.id == selectedBusiness.id }) {
-                filteredBusinesses[index].isFavorite.toggle()
-                        
-//                filteredBusinesses.append(filteredBusinesses[index])
-                
-             }
+        func toggleFavorite(selectedBusiness: Business) {
+            if let index = mainFeedBusinesses.firstIndex(of: selectedBusiness) {
+                favoriteBusinesses.append(selectedBusiness)
+            }
             print("Favorite Business array: \(favoriteBusinesses)")
         }
+    
+    func isFavorite(selectedBusiness: Business) -> Bool {
+        mainFeedBusinesses.contains(selectedBusiness)
+    }
 }

@@ -25,10 +25,10 @@ struct ContentView: View {
                                 .font(.title2)
                             Spacer()
                             Button {
-                                bm.favoriteBusiness(selectedBusiness: business)
+                                bm.toggleFavorite(selectedBusiness: business)
                             } label: {
-                                Image(systemName: business.isFavorite ? "heart.fill" : "heart")
-                                    .foregroundStyle(business.isFavorite ? .red : .gray)
+                                Image(systemName: bm.isFavorite(selectedBusiness: business) ? "heart.fill" : "heart")
+                                    .foregroundStyle(bm.isFavorite(selectedBusiness: business) ? .red : .gray)
                                     .font(.title3)
                             }.buttonStyle(.borderless)
                         }

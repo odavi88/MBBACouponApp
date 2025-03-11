@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct FavBusinessCell: View {
-    @ObservedObject var bm = BusinessManager()
+    var bm = BusinessManager()
     var body: some View {
-        HStack(spacing: 45) {
+        List {
             ForEach(bm.favoriteBusinesses) { business in
                 VStack {
                     Image(systemName: "")
