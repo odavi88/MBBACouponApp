@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FavBusinessCell: View {
-    @ObservedObject var bm = BusinessManager()
+    @ObservedObject var bm: BusinessManager
     var body: some View {
         ForEach(bm.favoriteBusinesses) { business in
             VStack {
@@ -26,5 +26,5 @@ struct FavBusinessCell: View {
 
 #Preview {
     let preview = PreviewContainer([Business.self])
-    return FavBusinessCell().modelContainer(preview.container)
+    FavBusinessCell(bm: BusinessManager()).modelContainer(preview.container)
 }

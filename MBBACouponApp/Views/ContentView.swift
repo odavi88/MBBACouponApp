@@ -13,7 +13,7 @@ struct ContentView: View {
     @Query var businesses: [Business]
     var body: some View {
         ScrollView(.horizontal) {
-            FavBusinessCell()
+            FavBusinessCell(bm: bm)
         }
         Spacer()
         NavigationStack {
