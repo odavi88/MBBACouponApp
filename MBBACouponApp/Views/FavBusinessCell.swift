@@ -10,17 +10,19 @@ import SwiftUI
 struct FavBusinessCell: View {
     @ObservedObject var bm: BusinessManager
     var body: some View {
-        ForEach(bm.favoriteBusinesses) { business in
-            VStack {
+        HStack {
+            ForEach(bm.favoriteBusinesses) { business in
+                VStack {
                     Image(systemName: "")
                         .frame(width: 100, height: 100)
                         .background(.blue)
                         .foregroundColor(.white)
                         .clipShape(.circle)
                     Text(business.accName)
+                }
             }
+            .padding()
         }
-        .padding()
     }
 }
 
