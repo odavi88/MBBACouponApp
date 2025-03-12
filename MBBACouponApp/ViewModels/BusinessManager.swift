@@ -12,7 +12,7 @@ import SwiftUI
 class BusinessManager: ObservableObject {
     @Published var searchText = ""
     @Published var mainFeedBusinesses: [Business] = [
-        Business(accName: "PC Builders Enterprises", memberStatus: .nonPremium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "pcbuilders@business.com", isFavorite: true, businessCategory: .itTech),
+        Business(accName: "PC Builders Enterprises", memberStatus: .nonPremium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "pcbuilders@business.com", isFavorite: false, businessCategory: .itTech),
            Business(accName: "Swift Industries", memberStatus: .premium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "swift@industries.com", isFavorite: false, businessCategory: .itTech),
            Business(accName: "AutoMasters", memberStatus: .nonPremium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "automasters@business.com", isFavorite: false, businessCategory: .automotive),
            Business(accName: "ConstructCo", memberStatus: .premium, subscriptionStatus: true, county: "", primaryIndustry: "", primaryEmail: "constructco@business.com", isFavorite: false, businessCategory: .construction),
@@ -94,14 +94,29 @@ class BusinessManager: ObservableObject {
     }
     
     //   MARK: Function that appends a favorited business into the favBusinesses array:
-        func toggleFavorite(selectedBusiness: Business) {
-            if let index = mainFeedBusinesses.firstIndex(of: selectedBusiness) {
-                favoriteBusinesses.append(selectedBusiness)
-            }
-            print("Favorite Business array: \(favoriteBusinesses)")
-        }
+//        func favoriteBusiness(selectedBusiness: Business) {
+//            // storing index; grabbing the first index (business) of the mainFeedBusinesses array where that business's id is equivalent to the input business's id
+//            if let index = mainFeedBusinesses.firstIndex(where: {$0.id == selectedBusiness.id}) {
+////                Take that business and append it into the favorite business array:
+//                favoriteBusinesses.append(mainFeedBusinesses[index])
+//            }
+//            print("Fav Business array: \(favoriteBusinesses)")
+//        }
     
-    func isFavorite(selectedBusiness: Business) -> Bool {
-        mainFeedBusinesses.contains(selectedBusiness)
+    func favoriteBusiness(selectedBusiness: Business) {
+        if let index = mainFeedBusinesses.firstIndex(where: { $0.id == selectedBusiness.id }) {
+            mainFeedBusinesses[index].isFavorite.toggle()  // Toggle the favorite status
+           
+            if mainFeedBusinesses[index].isFavorite {
+                // If marked as favorite, add to the favorites array (avoid duplicates)
+                if !favoriteBusinesses.contains(where: { $0.id == selectedBusiness.id }) {
+                    favoriteBusinesses.append(mainFeedBusinesses[index])
+                }
+            } else {
+                // If unmarked, remove from favorites
+                favoriteBusinesses.removeAll { $0.id == selectedBusiness.id }
+            }
+        }
+        print("Fav Business array: \(favoriteBusinesses)")
     }
 }
