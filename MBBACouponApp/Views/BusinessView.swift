@@ -45,6 +45,15 @@ struct BusinessView: View {
             }
             .padding()
         }
+        .safeAreaInset(edge: .bottom, alignment: .center) {
+            Image(systemName: "plus.circle.fill")
+                .font(.system(size: 80))
+                .frame(maxWidth:.infinity)
+                .background(.ultraThinMaterial)
+                .onTapGesture {
+                    // code goes here
+                }
+        }
     }
 }
 
