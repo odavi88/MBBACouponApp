@@ -18,16 +18,20 @@ struct CouponCellView: View {
             
             VStack(alignment: .leading) {
                 Text("Business Name")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .font(.custom("Montserrat-SemiBold", size: 34))
                 
                 Text("Detroit, MI")
+                    .font(.custom("Montserrat-Light", size: 16))
                 Text("Food/Catering")
+                    .font(.custom("Montserrat-Light", size: 16))
                 
                 HStack {
                     Text("5.0")
+                        .font(.custom("Montserrat-SemiBold", size: 16))
                     Image(systemName: "star.fill")
                     Text("(25+)")
+                        .font(.custom("Montserrat-Light", size: 16))
+                    
                 }
             }
             .padding()
@@ -46,6 +50,7 @@ struct CouponCellView: View {
                             .overlay {
                                 Text("Coffee Happy Hour (4pm - 6pm)")
                                     .multilineTextAlignment(.leading)
+                                    .font(.custom("Montserrat-SemiBold", size: 15.5))
                                 
                             }
                             .padding()
