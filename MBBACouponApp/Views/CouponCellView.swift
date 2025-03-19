@@ -25,14 +25,14 @@ struct CouponCellView: View {
                 Text("Food/Catering")
                     .font(.custom("Montserrat-Light", size: 16))
                 
-                HStack {
-                    Text("5.0")
-                        .font(.custom("Montserrat-SemiBold", size: 16))
-                    Image(systemName: "star.fill")
-                    Text("(25+)")
-                        .font(.custom("Montserrat-Light", size: 16))
-                    
-                }
+//                HStack {
+//                    Text("5.0")
+//                        .font(.custom("Montserrat-SemiBold", size: 16))
+//                    Image(systemName: "star.fill")
+//                    Text("(25+)")
+//                        .font(.custom("Montserrat-Light", size: 16))
+//                    
+//                }
             }
             .padding()
 
