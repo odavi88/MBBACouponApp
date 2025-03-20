@@ -20,14 +20,17 @@ struct CouponCellView: View {
             Text("Business Name")
                 .font(.montserrat(34))
                 .fontWeight(.semibold)
+                .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             
             Text("Detroit, MI")
                 .font(.montserrat(16))
                 .fontWeight(.light)
+                .dynamicTypeSize(...DynamicTypeSize.xxLarge)
             
             Text("Food/Catering")
                 .font(.montserrat(16))
                 .fontWeight(.light)
+                .dynamicTypeSize(...DynamicTypeSize.xxLarge)
             
             //                HStack {
             //                    Text("5.0")
@@ -56,6 +59,7 @@ struct CouponCellView: View {
                                 .multilineTextAlignment(.leading)
                                 .font(.montserrat(15.5))
                                 .fontWeight(.semibold)
+                                .dynamicTypeSize(...DynamicTypeSize.large)
                             
                         }
                         .padding()
@@ -63,6 +67,7 @@ struct CouponCellView: View {
             }
         }
         Spacer()
+        // MARK: Adds a drag indicator to the sheet when a business is tapped on the home view
             .presentationDragIndicator(.visible)
     }
 }

@@ -22,26 +22,32 @@ struct BusinessView: View {
                     Text(business.accName)
                         .font(.montserrat(24))
                         .fontWeight(.bold)
+                        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                     
                     Text(business.billingCity)
                         .font(.montserrat(16))
                         .fontWeight(.light)
+                        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
                     
                     Text(business.primaryIndustry)
                         .font(.montserrat(16))
                         .fontWeight(.light)
+                        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
 
                     
                     HStack {
                         Text("5.0")
                             .font(.montserrat(16))
                             .fontWeight(.bold)
+                            .dynamicTypeSize(...DynamicTypeSize.xxLarge)
 
                         Image(systemName: "star.fill")
+                            .dynamicTypeSize(...DynamicTypeSize.xxLarge)
                         
                         Text("(25+)")
                             .font(.montserrat(16))
                             .fontWeight(.light)
+                            .dynamicTypeSize(...DynamicTypeSize.xxLarge)
 
                     }
                 }
