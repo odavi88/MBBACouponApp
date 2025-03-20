@@ -20,20 +20,29 @@ struct BusinessView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                     
                     Text(business.accName)
-                        .font(.custom("Montserrat-Regular", size: 24))
+                        .font(.montserrat(24))
                         .fontWeight(.bold)
                     
                     Text(business.billingCity)
-                        .font(.custom("Montserrat-Light", size: 16))
+                        .font(.montserrat(16))
+                        .fontWeight(.light)
+                    
                     Text(business.primaryIndustry)
-                        .font(.custom("Montserrat-Light", size: 16))
+                        .font(.montserrat(16))
+                        .fontWeight(.light)
+
                     
                     HStack {
                         Text("5.0")
-                            .font(.custom("Montserrat-SemiBold", size: 16))
+                            .font(.montserrat(16))
+                            .fontWeight(.bold)
+
                         Image(systemName: "star.fill")
+                        
                         Text("(25+)")
-                            .font(.custom("Montserrat-Light", size: 16))
+                            .font(.montserrat(16))
+                            .fontWeight(.light)
+
                     }
                 }
                 .onTapGesture {
