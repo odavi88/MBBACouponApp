@@ -56,6 +56,7 @@ struct CouponCellView: View {
                         .frame(width: 275, height: 25)
                         .overlay {
                             Text("Coffee Happy Hour (4pm - 6pm)")
+                                .foregroundColor(Color.black)
                                 .multilineTextAlignment(.leading)
                                 .font(.montserrat(15.5))
                                 .fontWeight(.semibold)
