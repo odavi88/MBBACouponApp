@@ -11,7 +11,20 @@ import SwiftData
 struct ContentView: View {
     @StateObject var bm = BusinessManager()
     @Query var businesses: [Business]
+    @State private var settingsSheet = false
     var body: some View {
+        Button(action: {
+            settingsSheet.toggle()
+        }) {
+            Image(systemName: "gearshape.fill")
+                .imageScale(.large)
+        }
+        .frame(maxWidth: .infinity, alignment: .trailing)
+        .padding()
+        
+        .sheet(isPresented: $settingsSheet) {
+            SettingsView()
+        }
         ScrollView(.horizontal) {
             FavBusinessCell()
         }
