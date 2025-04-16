@@ -27,6 +27,7 @@ struct ContentView: View {
         }
         ScrollView(.horizontal) {
             FavBusinessCell()
+                .padding()
         }
         Spacer()
         NavigationStack {
