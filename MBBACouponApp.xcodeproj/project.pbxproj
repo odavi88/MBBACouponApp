@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F4A67F902D95C5E900F3B72D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F4A67F8F2D95C5E900F3B72D /* FirebaseAnalytics */; };
+		F4A67F922D95C90B00F3B72D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F4A67F912D95C90B00F3B72D /* FirebaseFirestore */; };
+		F4A67F942D95C90B00F3B72D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F4A67F932D95C90B00F3B72D /* FirebaseStorage */; };
+		F4A98E372DAE9F8700868CCE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = F4A98E362DAE9F8700868CCE /* FirebaseCore */; };
+		F4A98E392DAE9F8700868CCE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = F4A98E382DAE9F8700868CCE /* FirebaseDatabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		5DDB91D12D399559000E801C /* MBBACouponApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MBBACouponApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +31,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4A98E392DAE9F8700868CCE /* FirebaseDatabase in Frameworks */,
+				F4A67F902D95C5E900F3B72D /* FirebaseAnalytics in Frameworks */,
+				F4A67F922D95C90B00F3B72D /* FirebaseFirestore in Frameworks */,
+				F4A98E372DAE9F8700868CCE /* FirebaseCore in Frameworks */,
+				F4A67F942D95C90B00F3B72D /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,11 @@
 			);
 			name = MBBACouponApp;
 			packageProductDependencies = (
+				F4A67F8F2D95C5E900F3B72D /* FirebaseAnalytics */,
+				F4A67F912D95C90B00F3B72D /* FirebaseFirestore */,
+				F4A67F932D95C90B00F3B72D /* FirebaseStorage */,
+				F4A98E362DAE9F8700868CCE /* FirebaseCore */,
+				F4A98E382DAE9F8700868CCE /* FirebaseDatabase */,
 			);
 			productName = MBBACouponApp;
 			productReference = 5DDB91D12D399559000E801C /* MBBACouponApp.app */;
@@ -94,6 +112,9 @@
 			);
 			mainGroup = 5DDB91C82D399559000E801C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F4A67F8C2D95C4D400F3B72D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5DDB91D22D399559000E801C /* Products */;
 			projectDirPath = "";
@@ -252,9 +273,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MBBACouponApp/Preview Content\"";
-				DEVELOPMENT_TEAM = UUFQ8XM5Q7;
+				DEVELOPMENT_TEAM = 4HTL774HW4;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MBBACouponApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -281,9 +302,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MBBACouponApp/Preview Content\"";
-				DEVELOPMENT_TEAM = UUFQ8XM5Q7;
+				DEVELOPMENT_TEAM = 4HTL774HW4;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MBBACouponApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -324,6 +345,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F4A67F8C2D95C4D400F3B72D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F4A67F8F2D95C5E900F3B72D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4A67F8C2D95C4D400F3B72D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		F4A67F912D95C90B00F3B72D /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4A67F8C2D95C4D400F3B72D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F4A67F932D95C90B00F3B72D /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4A67F8C2D95C4D400F3B72D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		F4A98E362DAE9F8700868CCE /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4A67F8C2D95C4D400F3B72D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		F4A98E382DAE9F8700868CCE /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4A67F8C2D95C4D400F3B72D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5DDB91C92D399559000E801C /* Project object */;
 }
