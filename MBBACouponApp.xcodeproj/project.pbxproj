@@ -18,9 +18,22 @@
 		5DDB91D12D399559000E801C /* MBBACouponApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MBBACouponApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5D0397AC2DCA693100761FF8 /* Exceptions for "MBBACouponApp" folder in "MBBACouponApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5DDB91D02D399559000E801C /* MBBACouponApp */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5DDB91D32D399559000E801C /* MBBACouponApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5D0397AC2DCA693100761FF8 /* Exceptions for "MBBACouponApp" folder in "MBBACouponApp" target */,
+			);
 			path = MBBACouponApp;
 			sourceTree = "<group>";
 		};
@@ -96,7 +109,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					5DDB91D02D399559000E801C = {
 						CreatedOnToolsVersion = 16.0;
